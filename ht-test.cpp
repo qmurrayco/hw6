@@ -6,6 +6,7 @@
 #include <string>
 #include <sstream>
 #include <functional>
+#include <set>
 using namespace std;
 int main()
 {
@@ -24,11 +25,13 @@ int main()
         ss << "hi" << i;
         ht.insert({ss.str(), i});
     }
+
     if( ht.find("hi1") != nullptr ){
         cout << "Found hi1" << endl;
         ht["hi1"] += 1;
         cout << "Incremented hi1's value to: " << ht["hi1"] << endl;
     }
+
     if( ht.find("doesnotexist") == nullptr ){
         cout << "Did not find: doesnotexist" << endl;
     }

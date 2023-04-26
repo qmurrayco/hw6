@@ -96,4 +96,33 @@ bool boggleHelper(const std::set<std::string>& dict, const std::set<std::string>
 {
 //add your solution here!
 
+	//off board, done searching
+	if(c == board.size() || r == board.size()){return false;}
+
+	word += board[r][c];
+
+	if(prefix.find(word) == prefix.end()){
+		//my path is bad, im not a word, toss what i was, set me equal to what im looking at and recurse
+		//std::cout << "Previously I was:" << word << std::endl;
+		if(dict.find(word) != dict.end()){result.insert(word); return true;}else{word = board[r][c];}
+		//word = board[r][c];
+		//std::cout << "Starting over:" << word << std::endl;
+		boggleHelper(dict, prefix, board, word, result, r+dr, c+dc, dr, dc);
+		return false;
+	}else{
+		//I can say for a fact that im some prefix, im good to keep working (Recursing)
+		if(boggleHelper(dict, prefix, board, word, result, r+dr, c+dc, dr, dc)){
+			return true;
+		}else{
+			if(dict.find(word) != dict.end()){
+				result.insert(word);
+				return true;
+			}else{
+				return false;
+			}
+		}
+	}
+	
+	boggleHelper(dict, prefix, board, "", result, r+dr, c+dc, dr, dc);
+
 }

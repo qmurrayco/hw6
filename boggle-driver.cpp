@@ -32,4 +32,5 @@ int main(int argc, char* argv[])
 	}
 	cout << "Found " << found.size() << " words:" << endl;
 	cout << os.str().substr(0,os.str().size()-2) << endl;
+
 }
